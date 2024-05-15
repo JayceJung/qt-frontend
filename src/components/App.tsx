@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import LoginComponent from './Login';
-import PostList from './Form';
+import Dashboard from './Login';
+import PostList from './Dashboard';
 
-function App() {
+const App: React.FC = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     const handleLogin = () => {
@@ -14,7 +14,7 @@ function App() {
             {isLoggedIn ? (
                 <PostList />
             ) : (
-                <LoginComponent onLogin={handleLogin} />
+                <Dashboard onLogin={handleLogin} />
             )}
         </div>
     );

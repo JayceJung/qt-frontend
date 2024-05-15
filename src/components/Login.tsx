@@ -1,13 +1,23 @@
 import React, { useState } from "react";
-import "./App.css";
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import styled from "styled-components";
 import { loginUser } from "../services/authService";
 
+interface DashboardProps {
+    onLogin: () => void;
+}
+
+const StyledForm = styled(Form)`
+    margin: auto;
+    width: 30%;
+`;
+
 // @ts-ignore
-function Login({ onLogin }) {
+const Login:React.FC<DashboardProps> = ({ onLogin }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const [status, setStatus] = useState<Response>();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -22,13 +32,18 @@ function Login({ onLogin }) {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input type="text" value={username} onChange={e => setUsername(e.target.value)} placeholder="Username" />
-            <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Password" />
-            <button type="submit">Login</button>
-            {status && <div>{status.statusText}</div>}
+        <StyledForm onSubmit={handleSubmit}>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                <Form.Label>User Name</Form.Label>
+                <Form.Control type="text" placeholder="User Name" value={username} onChange={e => setUsername(e.target.value)} />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                <Form.Label>Password</Form.Label>
+                <Form.Control type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Password" />
+            </Form.Group>
+            <Button type="submit" variant="light">Login</Button>
             {error && <div>{error}</div>}
-        </form>
+        </StyledForm>
     );
 }
 
