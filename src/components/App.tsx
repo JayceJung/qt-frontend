@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Dashboard from './Login';
-import PostList from './Dashboard';
+import Login from './Login';
+import Dashboard from './Dashboard';
 
 const App: React.FC = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -12,9 +12,9 @@ const App: React.FC = () => {
     return (
         <div>
             {isLoggedIn ? (
-                <PostList />
+                <Dashboard />
             ) : (
-                <Dashboard onLogin={handleLogin} />
+                <Login onLogin={handleLogin} />
             )}
         </div>
     );
