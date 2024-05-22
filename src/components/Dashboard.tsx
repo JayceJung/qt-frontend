@@ -4,8 +4,9 @@ import Card from 'react-bootstrap/Card';
 import styled from "styled-components";
 import { getPost, getAllPosts } from "../services/postService";
 import Post from "./Post";
+import Navigation from "./Navigation";
 
-interface Post {
+interface PostType {
     title: string,
     content: string
 }
@@ -22,7 +23,7 @@ const StyledPost = styled(Card)`
 `;
 
 const Dashboard = () => {
-    const [posts, setPosts] = useState<Post[]>([]);
+    const [posts, setPosts] = useState<PostType[]>([]);
     const [selectedPost, setSelectedPost] = useState(null);
 
     useEffect(() => {
@@ -49,6 +50,7 @@ const Dashboard = () => {
                 <Post post={selectedPost}/>
         ) : (
             <div>
+                <Navigation />
                 {posts.map(post => (
                     <StyledPost onClick={() => selectPost(post)}>
                         <Card.Body>
