@@ -2,13 +2,17 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import Card from 'react-bootstrap/Card';
 import styled from "styled-components";
-import { getPost, getAllPosts } from "../services/postService";
-import Post from "./Post";
+import { getAllPosts } from "../services/postService";
 import Navigation from "./Navigation";
+
 
 interface PostType {
     title: string,
     content: string
+}
+
+interface DashboardProps {
+    onSelectPost: (post: any) => void;
 }
 
 const StyledPost = styled(Card)`
@@ -22,9 +26,8 @@ const StyledPost = styled(Card)`
     }
 `;
 
-const Dashboard = () => {
+const Dashboard:React.FC<DashboardProps> = ({ onSelectPost }) => {
     const [posts, setPosts] = useState<PostType[]>([]);
-    const [selectedPost, setSelectedPost] = useState(null);
 
     useEffect(() => {
         async function fetchAllPosts() {
@@ -41,27 +44,21 @@ const Dashboard = () => {
 
     const selectPost = async (post: any) => {
         console.log(post);
-        setSelectedPost(post);
+        onSelectPost(post);
     }
 
     return (
         <div>
-            {selectedPost ? (
-                <Post post={selectedPost}/>
-        ) : (
-            <div>
-                <Navigation />
-                {posts.map(post => (
-                    <StyledPost onClick={() => selectPost(post)}>
-                        <Card.Body>
-                            <Card.Title>{post.title}</Card.Title>
-                            <Card.Text>{post.content}</Card.Text>
-                        </Card.Body>
-                    </StyledPost>
-                ))}
-            </div>
-        )}
-        </div>     
+            <Navigation/>
+            {posts.map(post => (
+                <StyledPost onClick={() => selectPost(post)}>
+                    <Card.Body>
+                        <Card.Title>{post.title}</Card.Title>
+                        <Card.Text>{post.content}</Card.Text>
+                    </Card.Body>
+                </StyledPost>
+            ))}
+        </div>  
     )
 }
 
