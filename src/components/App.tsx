@@ -1,23 +1,15 @@
-import React, { useState } from 'react';
-import Login from './Login';
-import Dashboard from './Dashboard';
+import React from "react";
+import {
+  BrowserRouter as Router,
+} from "react-router-dom";
+import MainContent from "./MainContent";
 
 const App: React.FC = () => {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-    const handleLogin = () => {
-        setIsLoggedIn(true);
-    };
-
-    return (
-        <div>
-            {isLoggedIn ? (
-                <Dashboard />
-            ) : (
-                <Login onLogin={handleLogin} />
-            )}
-        </div>
-    );
+  return (
+    <Router>
+      <MainContent/>
+    </Router>
+  )  
 }
 
 export default App;

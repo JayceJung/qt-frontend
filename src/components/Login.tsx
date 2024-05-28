@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import styled from "styled-components";
 import { loginUser } from "../services/authService";
 
-interface DashboardProps {
+interface LoginProps {
     onLogin: () => void;
 }
 
@@ -14,7 +14,7 @@ const StyledForm = styled(Form)`
 `;
 
 // @ts-ignore
-const Login:React.FC<DashboardProps> = ({ onLogin }) => {
+const Login:React.FC<LoginProps> = ({ onLogin }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
