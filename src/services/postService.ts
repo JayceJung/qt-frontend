@@ -14,7 +14,6 @@ export async function getAllPosts() {
 
 export async function getPost(id:String) {
     const url = `${API_URL}/posts/${id}`;
-    console.log(url);
 
     try {
         const response = await fetch(url)
