@@ -11,8 +11,8 @@ const Navigation: React.FC = () => {
 
   const handleLogout = async () => {
     try {
-      setIsLoggedIn(false);
       await logoutUser();
+      setIsLoggedIn(false);
       navigate("/"); // Updated method to navigate
     } catch (error) {
       console.error("Failed to log out:", error);
