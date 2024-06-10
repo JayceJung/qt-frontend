@@ -36,3 +36,23 @@
     transform: rotate(360deg);
   }
 }
+
+/* CustomDropdown.module.css */
+.customToggleButton {
+  color: #6c757d;
+  background-color: #f8f9fa;
+  border-color: #6c757d;
+}
+.customToggleButton:hover {
+  color: #6c757d;
+  background-color: #fff9a1;
+  border-color: #6c757d;
+}
+
+.customToggleButton:active,
+.customToggleButton.active {
+  color: #838d9c;
+  background-color: #e9ecef;
+  border-color: #838d9c;
+  box-shadow: 0 0 0 0.2rem rgba(46, 52, 60, 0.5);
+}
